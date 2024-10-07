@@ -12,11 +12,11 @@ const HomePage = () => {
   const mobileRef = useRef(null);
   const ageRef = useRef(null);
   const [inputVisible, setInputVisible] = useState(false);
-  const addButtonClicked = () => {
-    setInputVisible(!inputVisible);
-  };
+
+  const addButtonClicked = () => {setInputVisible(!inputVisible);};
+
   const checkInDataBase = (aadharNo) => {
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < data?.length; i++) {
       if (data[i].aadhar === aadharNo) {
         alert("Aadhar Already Exists, Duplicate AAdhar not Allowed");
         return false;  // Immediately return false and stop the iteration
@@ -46,6 +46,7 @@ const HomePage = () => {
     console.log(phone);
     return phone(phoneNo).isValid;
   };
+
   const emptyChecker = (name, dob, aadhar, mobile, age) => {
     if (name === null || name === "") {
       alert("Name Cannot be Empty Or Null");
@@ -76,6 +77,7 @@ const HomePage = () => {
 
     return true;
   };
+
   const generateNewEntry = () => {
     if (
       emptyChecker(
@@ -104,6 +106,7 @@ const HomePage = () => {
     }
     setInputVisible(false);
   };
+
   const deleteItem = (id) => {
     let data2 = data.filter((item) => {
       return item.id != id;
@@ -111,9 +114,12 @@ const HomePage = () => {
     setData(data2);
     localStorage.setItem("data", JSON.stringify(data2));
   };
+
   useEffect(() => {
     const data3 = localStorage.getItem("data");
-    setData(JSON.parse(data3));
+    if(data3.length){
+      setData(JSON.parse(data3));
+    }
   }, []);
 
   const ageCalculator = (dob) => {
