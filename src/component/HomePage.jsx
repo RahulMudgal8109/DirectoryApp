@@ -68,12 +68,7 @@ const HomePage = () => {
     if (mobile === null || mobile === "") {
       alert("mobile Cannot be Empty Or Null");
       return false;
-    } else {
-      if (!phoneValidator(mobileRef.current.value)) {
-        alert("Mobile number not valid");
-        return false;
-      }
-    }
+    } 
 
     return true;
   };
