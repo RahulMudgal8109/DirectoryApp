@@ -10,14 +10,12 @@ const RetrievePage = () => {
   
 
   useEffect(()=>{
-    const data = localStorage.getItem("data");
-    // check if data exits
-    if(data.length)
+    const data=localStorage.getItem("data");
     setJsonData(JSON.parse(data));
   },[])
   const findData=(aadhar)=>{
-    
-    for (let i = 0; i < jsonData?.length; i++) {
+    //alert(aadhar)
+    for (let i = 0; i < jsonData.length; i++) {
       if (jsonData[i].aadhar === aadhar) {
         setMyData(jsonData[i])
         
@@ -42,7 +40,7 @@ const RetrievePage = () => {
               findData(findRef.current.value)
             }}>Find</button>
           </div>
-          {myData && <div className="final-op">
+          {myData &&<div className="final-op">
           {myData!=="" ?<div className="output">
             <div className="d-flex">
               <h4>Name:{myData.name}</h4>
